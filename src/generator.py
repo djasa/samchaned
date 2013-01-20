@@ -10,7 +10,7 @@ import analog
 from optparse import OptionParser
 
 if __name__ == '__main__':
-    
+
     parser = OptionParser()
     parser.add_option("-a", "--air", dest="air",
                   help="map-AirA file", metavar="FILE")
@@ -35,7 +35,7 @@ if __name__ == '__main__':
         not options.sorted or \
         not options.desc:
         parser.error("all options are required; try --help for help")
-    
+
     str_size = analog._struct.size
     chansC = {}
     chansA = {}
@@ -50,7 +50,7 @@ if __name__ == '__main__':
         chansC[an.freq] = an
         line = file.read(str_size)
     file.close()
-    
+
     file = open(options.air, "rb")
     line = file.read(str_size)
     while line:
@@ -58,16 +58,16 @@ if __name__ == '__main__':
         chansA[an.freq] = an
         line = file.read(str_size)
     file.close()
-    
+
     # read sortedC channels
     file = open(options.sorted)
     lines = file.readlines()
     file.close()
-    
+
     num = 1
     for line in lines:
         line = line.rstrip()
-        
+
         # skip empty lines
         if len(line) == 0:
             continue
@@ -92,7 +92,7 @@ if __name__ == '__main__':
         except KeyError:
             print "no chan for freq: " + str(freq)
         num += 1
-    
+
     #save
     print "GENERATING map-CableA"
     fout = open(options.desc + "/map-CableA", "wb")
@@ -100,7 +100,7 @@ if __name__ == '__main__':
         print an
         fout.write(an.line)
     zeros = "\0" * 40
-    for i in range(1000-len(sortedC)):
+    for i in range(1000 - len(sortedC)):
         fout.write(zeros)
     fout.close()
 
@@ -110,6 +110,6 @@ if __name__ == '__main__':
         print an
         fout.write(an.line)
     zeros = "\0" * 40
-    for i in range(1000-len(sortedC)):
+    for i in range(1000 - len(sortedC)):
         fout.write(zeros)
     fout.close()

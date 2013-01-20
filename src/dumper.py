@@ -10,11 +10,11 @@ import analog
 import sys
 
 if __name__ == '__main__':
-    
+
     if len(sys.argv) != 2 or sys.argv[1] == "-h" or sys.argv[1] == "--help":
         print "USAGE %s map-typeA" % sys.argv[0]
         sys.exit(1)
-    
+
     str_size = analog._struct.size
     chans = {}
 
@@ -28,4 +28,3 @@ if __name__ == '__main__':
             print an
         line = file.read(str_size)
     file.close()
-
