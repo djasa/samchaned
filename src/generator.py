@@ -34,7 +34,7 @@ if __name__ == '__main__':
         not options.cable or \
         not options.sorted or \
         not options.desc:
-        parser.error("all oprions are requred; try --help for help")
+        parser.error("all options are required; try --help for help")
     
     str_size = analog._struct.size
     chansC = {}
